@@ -1,30 +1,23 @@
 import { useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import AddUser from "./components/User/AddUser";
-import UsersList from "./components/User/UsersList";
-import Card from "./components/UI/Card";
+import Navigation from "./components/Navigation/Navigation";
+import HomePage from "./pages/Home";
+import UsersPage from "./pages/Users";
+import MealsPage from "./pages/Meals";
+
+const router = createBrowserRouter([
+  { path: "/", element: <HomePage /> },
+  { path: "/users", element: <UsersPage /> },
+  { path: "/meals", element: <MealsPage /> },
+]);
 
 function App() {
-  const [usersList, setUsersList] = useState<object[]>([]);
-
-  const addUserHandler = (userName: string, userAge: string) => {
-    setUsersList((previousList: Array<Object>) => [
-      ...previousList,
-      { userName: userName, userAge: userAge, id: Math.random().toString() },
-    ]);
-  };
-
   return (
     <div className="App bg-slate-50 h-screen flex">
+      <Navigation />
       <div className="container mx-auto bg-white">
-        <div>
-          <Card className="max-w-xl mx-auto mt-6 p-10 flex">
-            <AddUser onAddUser={addUserHandler} />
-          </Card>
-          <Card className="max-w-xl mx-auto mt-6 p-10 flex">
-            <UsersList users={usersList} />
-          </Card>
-        </div>
+        <RouterProvider router={router} />
       </div>
     </div>
   );

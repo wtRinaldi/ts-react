@@ -8,7 +8,7 @@ interface Props {
 const UsersList = ({ className = "", users }: Props) => {
   return (
     <ul className={className}>
-      {users.map((user) => (
+      {users.map((user: Object) => (
         <li key={user.id}>
           {user.userName} - Age: {user.userAge}
         </li>

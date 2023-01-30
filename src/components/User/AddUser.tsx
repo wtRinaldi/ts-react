@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../UI/Button";
 
 interface Props {
@@ -9,6 +9,9 @@ interface Props {
 const AddUser = ({ className = "", onAddUser }: Props) => {
   const [userName, setUserName] = useState("");
   const [userAge, setUserAge] = useState("");
+
+  debugger;
+  console.log("form is rendering");
 
   const addUserHandler = (event: React.FormEvent) => {
     event.preventDefault();
